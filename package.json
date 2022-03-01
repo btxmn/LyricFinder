@@ -1,0 +1,16 @@
+{
+  "name": "geniuslyricfinder",
+  "version": "1.0.0",
+  "description": "Uses genius.com to retrieve song lyrics",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Tom",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio-without-node-native": "^1.0.0-rc.2",
+    "node-fetch": "^2.0.0",
+    "random-useragent": "^0.5.0"
+  }
+}

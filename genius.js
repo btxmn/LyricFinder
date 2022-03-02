@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const randomUseragent = require('random-useragent');
 const cheerios = require('cheerio-without-node-native');
+const htmlEntities = require("html-entities")
 
 const getLyrics = async (query) => {
     try {
@@ -55,7 +56,7 @@ const getLyrics = async (query) => {
                 const lined = html.replace(/<br\s*[\/]?>/gi, "\n")
                 const stripped = lined.replace(/<[^>]+>/ig, '')
                 const trimmed = stripped.trim()
-                response.lyrics += trimmed
+                response.lyrics += htmlEntities.decode(trimmed)
             });
 
             response.artist = songMetadata["artist_names"]

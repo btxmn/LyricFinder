@@ -31,10 +31,6 @@ const getLyrics = async (query) => {
         if (multiSearch.response && multiSearch.response.sections && multiSearch.response.sections[0] && multiSearch.response.sections[0].hits && multiSearch.response.sections[0].hits[0] && multiSearch.response.sections[0].hits[0].result && multiSearch.response.sections[0].hits[0].result.url) {
             const songMetadata = multiSearch.response.sections[0].hits[0].result
 
-            response.artist = songMetadata["artist_names"]
-            response.song = songMetadata["title"]
-            response.thumbnail = songMetadata["song_art_image_url"]
-
             const lyricsResponse = await fetch(songMetadata.url, {
                 method: 'GET',
                 headers: {
@@ -61,6 +57,11 @@ const getLyrics = async (query) => {
                 const trimmed = stripped.trim()
                 response.lyrics += trimmed
             });
+
+            response.artist = songMetadata["artist_names"]
+            response.song = songMetadata["title"]
+            response.thumbnail = songMetadata["song_art_image_url"]
+           
             return response
         } else {
             return new Error("😢 The search response contains malformed data")

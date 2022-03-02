@@ -27,7 +27,7 @@ const getLyrics = async (query) => {
             }
         })
         .then(r => r.json())
-        .catch(e => { throw new Error("😢 Genius API failed to search for that song") });
+        .catch(e => { throw new Error("😢 Genius API failed to search for that song\n" + e) });
 
         if (multiSearch.response && multiSearch.response.sections && multiSearch.response.sections[0] && multiSearch.response.sections[0].hits && multiSearch.response.sections[0].hits[0] && multiSearch.response.sections[0].hits[0].result && multiSearch.response.sections[0].hits[0].result.url) {
             const songMetadata = multiSearch.response.sections[0].hits[0].result
@@ -59,6 +59,7 @@ const getLyrics = async (query) => {
                 response.lyrics += htmlEntities.decode(trimmed)
             });
 
+            if (response.lyrics.length == 0) return getLyrics(query);
             response.artist = songMetadata["artist_names"]
             response.song = songMetadata["title"]
             response.thumbnail = songMetadata["song_art_image_url"]

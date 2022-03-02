@@ -1,6 +1,6 @@
 {
   "name": "geniuslyricfinder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Uses genius.com to retrieve song lyrics",
   "main": "index.js",
   "scripts": {

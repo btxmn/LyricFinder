@@ -27,7 +27,7 @@ const getLyrics = async (query) => {
             }
         })
         .then(r => r.json())
-        .catch(e => { throw new Error("😢 Genius API failed to search for that song\n" + e) });
+        .catch(e => { throw new Error("😢 Genius API dropped the request, retry in one second") });
 
         if (multiSearch.response && multiSearch.response.sections && multiSearch.response.sections[0] && multiSearch.response.sections[0].hits && multiSearch.response.sections[0].hits[0] && multiSearch.response.sections[0].hits[0].result && multiSearch.response.sections[0].hits[0].result.url) {
             const songMetadata = multiSearch.response.sections[0].hits[0].result

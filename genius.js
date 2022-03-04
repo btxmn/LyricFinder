@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const randomUseragent = require('random-useragent');
 const cheerios = require('cheerio-without-node-native');
-const htmlEntities = require("html-entities")
+const htmlEntities = require("html-entities");
 
 const getLyrics = async (query) => {
     try {
@@ -15,15 +15,16 @@ const getLyrics = async (query) => {
         const multiSearch = await fetch(`https://genius.com/api/search/multi?q=${query}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Accept-Language': 'en-GB,en;q=0.9',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
+                'Accept-Encoding': 'gzip, deflate, br',
                 'sec-ch-mobile': '?0',
-                'sec-ch-ua-platform': 'MacPro',
                 'x-requested-with': 'XMLHttpRequest',
-                'cookie': '_ga=1',
+                'cookie': '_genius_ab_test_cohort=66; _genius_ab_test_primis_mobile=control;',
                 'referer': 'https://genius.com/search/embed',
                 'referrer-policy': 'strict-origin-when-cross-origin',
-                'user-agent': randomUseragent.getRandom()
+                'user-agent': randomUseragent.getRandom(),
+                'dnt': 1
             }
         })
         .then(r => r.json())
@@ -35,15 +36,16 @@ const getLyrics = async (query) => {
             const lyricsResponse = await fetch(songMetadata.url, {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Accept-Language': 'en-GB,en;q=0.9',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                    'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
+                    'Accept-Encoding': 'gzip, deflate, br',
                     'sec-ch-mobile': '?0',
-                    'sec-ch-ua-platform': 'MacPro',
                     'x-requested-with': 'XMLHttpRequest',
-                    'cookie': '_ga=1',
+                    'cookie': '_genius_ab_test_cohort=66; _genius_ab_test_primis_mobile=control;',
                     'referer': 'https://genius.com/search/embed',
                     'referrer-policy': 'strict-origin-when-cross-origin',
-                    'user-agent': randomUseragent.getRandom()
+                    'user-agent': randomUseragent.getRandom(),
+                    'dnt': 1
                 }
             })
             .then(r => r.text()

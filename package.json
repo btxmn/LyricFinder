@@ -6,6 +6,14 @@
   "scripts": {
     "test": "node index.js"
   },
+  "keywords": [
+    "lyrics",
+    "lyric",
+    "genius",
+    "api",
+    "music",
+    "songs"
+  ],
   "author": "Tom",
   "license": "ISC",
   "dependencies": {
